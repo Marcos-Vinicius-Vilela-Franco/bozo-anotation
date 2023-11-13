@@ -1,0 +1,11 @@
+.card-user {
+    width: 26rem;
+    
+    border: 1px solid #ccc;
+    /* Cor da borda */
+    border-radius: 8px;
+    /* Raio do arredondamento */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    
+}
