@@ -15,11 +15,15 @@ const CardUser: React.FC<userProps> = ({ user, onDelete }) => {
     const [value, setValue] = useState<number>(0);
 
     const increment = () => {
-        setValue(value + 1);
+        if (value < 6) {
+            setValue(value + 1);
+        }
     };
 
     const decrement = () => {
-        setValue(value - 1);
+        if (value >= 1) {
+            setValue(value - 1);
+        }
     };
     const handleDelete = (name: string) => {
         onDelete(name); // Chama a função do componente pai com o nome como parâmetro
@@ -35,13 +39,21 @@ const CardUser: React.FC<userProps> = ({ user, onDelete }) => {
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
                         <div>
-                            <input type="number" value={value} readOnly />
-                            <button onClick={increment}>+1</button>
-                            <button onClick={decrement}>-1</button>
+                            <input type="text" value={value} readOnly className="form-control" />
+                            <Button onClick={increment} variant="primary" className="me-2">
+                                +
+                            </Button>
+                            <Button onClick={decrement} variant="danger">
+                                -
+                            </Button>
                         </div>
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>...</Modal.Body>
+                <Modal.Body>
+                    <Button onClick={decrement} variant="danger">
+                        Torar
+                    </Button>
+                </Modal.Body>
             </Modal>
             <div className="card card-user m-3">
                 <div className=' d-flex p-1 bg-light d-flex justify-content-between'>
