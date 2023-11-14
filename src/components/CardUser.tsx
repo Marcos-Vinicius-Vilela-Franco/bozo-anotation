@@ -30,6 +30,7 @@ const CardUser: React.FC<userProps> = ({ user, onDelete }) => {
     };
     return (
         <>
+
             <Modal
                 size="sm"
                 show={smShow}
@@ -38,23 +39,37 @@ const CardUser: React.FC<userProps> = ({ user, onDelete }) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
-                        <div>
-                            <input type="text" value={value} readOnly className="form-control" />
-                            <Button onClick={increment} variant="primary" className="me-2">
-                                +
-                            </Button>
-                            <Button onClick={decrement} variant="danger">
-                                -
-                            </Button>
-                        </div>
+                        <h2>Acrescentar</h2>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Button onClick={decrement} variant="danger">
-                        Torar
-                    </Button>
+                    <div className="d-flex align-items-center mb-3">
+                        <div className='w-50'>
+
+                            <input type="number" value={value} readOnly className="form-control " />
+                        </div>
+                        <div className='d-flex w-50 justify-content-around '>
+                            <Button onClick={increment} variant="primary" className="rounded-circle me-2 btn-custom-size">
+                                +
+                            </Button>
+                            <Button onClick={decrement} variant="danger" className="rounded-circle btn-custom-size">
+                                -
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                        <Button onClick={decrement} variant="danger">
+                            Torar
+                        </Button>
+                        <Button onClick={decrement} variant="success">
+                            Salvar
+                        </Button>
+                    </div>
                 </Modal.Body>
             </Modal>
+
+
+
             <div className="card card-user m-3">
                 <div className=' d-flex p-1 bg-light d-flex justify-content-between'>
                     <h4 className='px-1'>{user.name} </h4>

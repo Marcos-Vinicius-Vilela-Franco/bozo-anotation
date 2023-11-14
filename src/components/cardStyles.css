@@ -9,3 +9,8 @@
     /* Sombra suave */
     
 }
+.btn-custom-size {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+}
