@@ -31,8 +31,18 @@ function App() {
     // },
 
   ])
+
+
+  const generateRandomIntId = () => {
+      const min = 1000; // Valor mínimo para o ID
+      const max = 9999; // Valor máximo para o ID
+      return Math.round(Math.random() * (max - min) + min);
+  }
+
+
   const addNewUser = () => {
     const newUser: User = {
+      id:generateRandomIntId(),
       name: newUserName,
       az: 1,
       duque: 2,
@@ -68,10 +78,10 @@ function App() {
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>nome</Form.Label>
+                <Form.Label>Nome</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Digite seu nome"
+                  placeholder="Digite o nome do jogador"
                   autoFocus
                   value={newUserName}
                   onChange={(e) => setNewUserName(e.target.value)}
@@ -94,7 +104,7 @@ function App() {
 
         <div className="gameBox d-flex align-content-stretch flex-wrap justify-content-center">
           {users.map((user, index) => (
-            <CardUser onDelete={deleteUser} key={index} user={user} />
+            <CardUser onDelete={deleteUser} key={user.id} user={user} />
           ))}
         </div>
         <div onClick={handleShow} className='d-flex justify-content-end mx-5 m-5'><button className='rounded-circle fw-bolder btn btn-success btn-lg'>+</button></div>
