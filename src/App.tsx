@@ -6,6 +6,7 @@ import { User } from "./interfaces/User"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [showAddUser, setShowAddUser] = useState(false);
   const [newUserName, setNewUserName] = useState('');
@@ -31,8 +32,14 @@ function App() {
     // },
 
   ])
+  const updateUser = (updatedUser:User) => {
+    setUsers((prevUsers) =>
+      prevUsers.map((user) => (user.id === updatedUser.id ? updatedUser : user))
+    );
+  };
   const addNewUser = () => {
     const newUser: User = {
+      id:uuidv4(),
       name: newUserName,
       az: 1,
       duque: 2,
@@ -68,10 +75,10 @@ function App() {
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>nome</Form.Label>
+                <Form.Label>Nome</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Digite seu nome"
+                  placeholder="Digite o nome do jogador"
                   autoFocus
                   value={newUserName}
                   onChange={(e) => setNewUserName(e.target.value)}
@@ -94,7 +101,7 @@ function App() {
 
         <div className="gameBox d-flex align-content-stretch flex-wrap justify-content-center">
           {users.map((user, index) => (
-            <CardUser onDelete={deleteUser} key={index} user={user} />
+            <CardUser onDelete={deleteUser} updateUser={updateUser} key={user.id} user={user} />
           ))}
         </div>
         <div onClick={handleShow} className='d-flex justify-content-end mx-5 m-5'><button className='rounded-circle fw-bolder btn btn-success btn-lg'>+</button></div>
