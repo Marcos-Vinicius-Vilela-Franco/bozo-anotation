@@ -250,8 +250,8 @@ const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
             setValue(40)
         }
     };
-    const handleDelete = (name: string) => {
-        onDelete(name); // Chama a função do componente pai com o nome como parâmetro
+    const handleDelete = (uuid: string) => {
+        onDelete(uuid); // Chama a função do componente pai com o nome como parâmetro
     };
     const clickBotoes = (infoBotao: string) => {
         setInfoButton(infoBotao)
@@ -364,7 +364,7 @@ const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
             <div className="card card-user m-3">
                 <div className=' d-flex p-1 bg-light d-flex justify-content-between'>
                     <h4 className='px-1'>{user.name} </h4>
-                    <CloseButton onClick={() => handleDelete(user.name)} />
+                    <CloseButton onClick={() => handleDelete(user.id)} />
                 </div>
                 <div className="card-body w-100 d-flex flex-row justify-content-center ">
                     <div className="infoUser col-5 d-flex flex-nowrap flex-column justify-content-center">
