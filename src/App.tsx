@@ -65,6 +65,33 @@ function App() {
       prevUsers.map((user) => (user.id === updatedUser.id ? updatedUser : user))
     );
   };
+  const zerarUsers = () => {
+    // Lógica para zerar os usuários
+    const confirmZerar = window.confirm('Tem certeza que deseja zerar os usuários? Esta ação não pode ser desfeita.');
+    if (confirmZerar) {
+      const zeradosUsers = users.map(user => ({
+        id: uuidv4(),
+        name: user.name,
+        az: 1,
+        duque: 2,
+        terno: 3,
+        quadra: 4,
+        quina: 5,
+        sena: 6,
+        fu: 0,
+        seguida: 0,
+        quadrada: 0,
+        general: 0,
+        resultado: 0,
+      }));
+      setUsers(zeradosUsers)
+      window.alert('Usuários foram zerados!');
+    }
+  };
+
+
+
+
   const addNewUser = () => {
     const newUser: User = {
       id: uuidv4(),
@@ -88,7 +115,7 @@ function App() {
     handleClose()
   };
   const deleteUser = (userId: string) => {
-    setUsers(prevUsers => prevUsers.filter(user => user.id!== userId));
+    setUsers(prevUsers => prevUsers.filter(user => user.id !== userId));
   };
 
 
@@ -139,8 +166,15 @@ function App() {
             <CardUser onDelete={deleteUser} updateUser={updateUser} key={user.id} user={user} />
           ))}
         </div>
+
+
+        <div style={{ position: 'fixed', bottom: '20px', left: '20px' }}>
+          <div onClick={zerarUsers} >
+            <button style={{ width: '50px' }} className='d-flex justify-content-center align-content-center  btn btn-danger btn-lg'>zerar</button>
+          </div>
+        </div>
         <div style={{ position: 'fixed', bottom: '20px', right: '20px' }}>
-          <div onClick={handleShow} className='d-flex justify-content-end '>
+          <div onClick={handleShow} className='d-flex justify-content-end'>
             <button className='rounded-circle fw-bolder btn btn-success btn-lg'>+</button>
           </div>
         </div>

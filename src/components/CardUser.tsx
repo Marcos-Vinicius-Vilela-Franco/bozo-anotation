@@ -93,75 +93,80 @@ const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
         }
     }
     const salvar = (infoButton: string) => {
-        if (infoButton === 'Ás') {
-            user.az = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostraAs(true)
+        if (value == 0) {
+            window.alert('Valor 0 é inválido!');
             handleClose()
-        }
-        if (infoButton === 'Duque') {
-            user.duque = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostra2(true)
-            handleClose()
-        }
-        if (infoButton === 'Terno') {
-            user.terno = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostra3(true)
-            handleClose()
-        }
-        if (infoButton === 'Quadra') {
-            user.quadra = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostra4(true)
-            handleClose()
-        }
-        if (infoButton === 'Quina') {
-            user.quina = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostra5(true)
-            handleClose()
-        }
-        if (infoButton === 'Sena') {
-            user.sena = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostra6(true)
-            handleClose()
-        }
-        if (infoButton === 'Fú') {
-            user.fu = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostraF(true)
-            handleCloseEspeciais()
-        }
-        if (infoButton === 'Seguida') {
-            user.seguida = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostraS(true)
-            handleCloseEspeciais()
-        }
-        if (infoButton === 'Quadrada') {
-            user.quadrada = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostraQ(true)
-            handleCloseEspeciais()
-        }
-        if (infoButton === 'General') {
-            user.general = value;
-            user.resultado = user.resultado + value;
-            updateUser(user)
-            setMostraG(true)
-            handleCloseEspeciais()
+        } else {
+            if (infoButton === 'Ás') {
+                user.az = value;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostraAs(true)
+                handleClose()
+            }
+            if (infoButton === 'Duque') {
+                user.duque = value;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostra2(true)
+                handleClose()
+            }
+            if (infoButton === 'Terno') {
+                user.terno = value;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostra3(true)
+                handleClose()
+            }
+            if (infoButton === 'Quadra') {
+                user.quadra = value;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostra4(true)
+                handleClose()
+            }
+            if (infoButton === 'Quina') {
+                user.quina = value;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostra5(true)
+                handleClose()
+            }
+            if (infoButton === 'Sena') {
+                user.sena = value;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostra6(true)
+                handleClose()
+            }
+            if (infoButton === 'Fú') {
+                user.fu = value;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostraF(true)
+                handleCloseEspeciais()
+            }
+            if (infoButton === 'Seguida') {
+                user.seguida = value;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostraS(true)
+                handleCloseEspeciais()
+            }
+            if (infoButton === 'Quadrada') {
+                user.quadrada = value;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostraQ(true)
+                handleCloseEspeciais()
+            }
+            if (infoButton === 'General') {
+                user.general = user.general + 1;
+                user.resultado = user.resultado + value;
+                updateUser(user)
+                setMostraG(true)
+                handleCloseEspeciais()
+            }
         }
     }
     const increment = () => {
@@ -392,7 +397,7 @@ const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
                                 <button onClick={() => clickBotoesEspeciais('Quadrada')} disabled={mostraQ} type='button' title='Quadrada' className={cores(user.quadrada, mostraQ)}>{user.quadrada === 0 ? 'Q' : user.quadrada}</button>
                             </div>
                             <div className="d-flex flex-nowrap p-1 ">
-                                <button onClick={() => clickBotoesEspeciais('General')} disabled={mostraG} type='button' title='General' className={`${cores(user.general, mostraG)} ms-auto d-flex justify-content-end`}>{user.general === 0 ? 'G' : user.general}</button>
+                                <button onClick={() => clickBotoesEspeciais('General')} type='button' title='General' className={`${cores(user.general, mostraG)} ms-auto d-flex justify-content-end`}>{user.general === 0 ? 'G' : user.general + ' G'}</button>
                             </div>
                         </div>
 
