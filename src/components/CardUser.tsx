@@ -348,18 +348,18 @@ const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
-
-                        <h2>{infoButton}</h2>
+                        <h2>{user.name}</h2>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="d-flex align-items-center mb-3">
-                        <div className='w-50'>
-                            <span
-                                className="form-control me-2"
-                            >{value}</span>
+                    <div className='d-flex align-items-center justify-content-center mb-2'>
+                        <h2>{infoButton}</h2>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-center mb-3">
+                        <div className='d-flex w-25 justify-content-around mb-2'>
+                            <span className="form-control me-2">{value}</span>
                         </div>
-                        <div className='d-flex w-50 justify-content-around '>
+                        <div className='d-flex w-75 justify-content-around mb-2 '>
                             <Button onClick={increment} variant="outline-secondary" className=" me-2 btn-custom-size">
                                 +
                             </Button>
