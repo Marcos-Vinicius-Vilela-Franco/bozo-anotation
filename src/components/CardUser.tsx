@@ -1,6 +1,6 @@
 import './cardStyles.css';
 import { User } from '../interfaces/User'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import CloseButton from 'react-bootstrap/CloseButton';
 import Modal from 'react-bootstrap/Modal';
@@ -14,6 +14,7 @@ interface userProps {
 const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
 
     const [especiais, setEspeciais] = useState<boolean>(false);
+    const [contGeneral, setContGeneral] = useState<number>(0);
     const [smShow, setSmShow] = useState<boolean>(false);
     const [value, setValue] = useState<number>(0);
     const [infoButton, setInfoButton] = useState<string>('')
@@ -93,7 +94,7 @@ const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
         }
     }
     const salvar = (infoButton: string) => {
-        if (value == 0) {
+        if (value === 0) {
             window.alert('Valor 0 é inválido!');
             handleClose()
         } else {
@@ -161,11 +162,21 @@ const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
                 handleCloseEspeciais()
             }
             if (infoButton === 'General') {
-                user.general = user.general + 1;
-                user.resultado = user.resultado + value;
-                updateUser(user)
-                setMostraG(true)
-                handleCloseEspeciais()
+                if (contGeneral === 0) {
+                    user.general = user.general + 1;
+                    user.resultado = user.resultado + value;
+                    setContGeneral(contGeneral + 1);
+                    updateUser(user)
+                    setMostraG(true)
+                    handleCloseEspeciais()
+                } else {
+                    user.general = user.general + 1;
+                    setContGeneral(contGeneral + 1);
+                    updateUser(user)
+                    setMostraG(true)
+                    handleCloseEspeciais()
+                }
+
             }
         }
     }
@@ -279,7 +290,7 @@ const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
         if (v1 === 0 && v2) {
             return 'btn btn-danger fw-bolder btn-lg me-2'
         }
-        else if (v1 != 0 && v2) {
+        else if (v1 !== 0 && v2) {
             return 'btn  btn-primary fw-bolder btn-lg me-2'
         } else {
             return 'btn btn-light  fw-bolder btn-lg me-2'
@@ -296,17 +307,21 @@ const CardUser: React.FC<userProps> = ({ user, onDelete, updateUser }) => {
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
 
-                        <h2>{infoButton}</h2>
+                        <h2>{user.name}</h2>
+
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <div className='d-flex align-items-center justify-content-center mb-2'>
+                        <h2>{infoButton}</h2>
+                    </div>
+
                     <div className="d-flex align-items-center mb-3">
-                        <div className='w-25'>
-                            <span
-                                className="form-control me-2"
-                            >{value}</span>
+
+                        <div className='d-flex w-25 justify-content-around mb-2'>
+                            <span className="form-control me-2">{value}</span>
                         </div>
-                        <div className='d-flex w-75 justify-content-around '>
+                        <div className='d-flex w-75 justify-content-around mb-2'>
                             <Button onClick={increment} variant="outline-secondary" >
                                 Boca
                             </Button>
